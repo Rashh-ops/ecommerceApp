@@ -9,7 +9,7 @@ import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import ProtectedRoute from "./components/protectedRoute";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App(){
