@@ -16,7 +16,7 @@ export default function Home(){
 
     useEffect(()=>{
         axios   
-            .get(import.meta.env.VITE_API_URL +"/api/products?limit=4")
+            .get(`${API}/api/products?limit=4`)
             .then((res)=> setProducts(res.data))
             .catch((err)=> console.error(err));
     },[]);

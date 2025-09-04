@@ -9,7 +9,7 @@ export default function ProductCard({product}){
             console.log("Sending to backend:", { productId: product._id, quantity:1});
 
             console.log("Token in React:",localStorage.getItem("token"));
-            await axios.post(import.meta.env.VITE_API_URL +"/api/cart/add",{productId:product._id,quantity:1},{headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
+            await axios.post(`${API}/api/cart/add`,{productId:product._id,quantity:1},{headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
             
             alert("Added to cart");
         }catch (err) {

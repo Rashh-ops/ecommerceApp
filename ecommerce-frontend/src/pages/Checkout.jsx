@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+const API = import.meta.env.VITE_API_URL;
 const Checkout = () => {
   const [cart, setCart] = useState({ products: [] });
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCart = async () => {
-      const { data } = await axios.get(import.meta.env.VITE_API_URL +"/api/cart", {
+      const { data } = await axios.get(`${API}/api/cart`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setCart(data);
@@ -24,7 +24,7 @@ const Checkout = () => {
       );
 
       const { data } = await axios.post(
-        import.meta.env.VITE_API_URL +"/api/orders/place",
+        `${API}/api/orders/place`,
         {
           products: cart.products.map((p) => ({
             product: p.product._id,

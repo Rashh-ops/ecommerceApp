@@ -12,7 +12,7 @@ const Cart=()=>{
     useEffect(()=>{
         const fetchcart=async ()=>{
             try{
-                const {data}=await axios.get(import.meta.env.VITE_API_URL +"/api/cart", {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
+                const {data}=await axios.get(`${API}/api/cart`, {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
                 setCart(data);
             }catch(err){
                 console.error(err);
@@ -38,7 +38,7 @@ const Cart=()=>{
   // then call backend
   try {
     await axios.put(
-      import.meta.env.VITE_API_URL +"/api/cart/update",
+      `${API}/api/cart/update`,
       { productId, quantity },
       { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );

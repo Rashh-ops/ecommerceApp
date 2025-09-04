@@ -7,7 +7,7 @@ const Orders = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const { data } = await axios.get(import.meta.env.VITE_API_URL +"/api/orders/my-orders", {
+      const { data } = await axios.get(`${API}/api/orders/my-orders`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setOrders(data);

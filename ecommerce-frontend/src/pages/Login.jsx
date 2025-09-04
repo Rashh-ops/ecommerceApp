@@ -13,7 +13,7 @@ const Login=()=>{
     const handleLogin=async (e)=>{
         e.preventDefault();
         try{
-            const {data}=await axios.post(import.meta.env.VITE_API_URL +"/api/auth/login",{email,password});
+            const {data}=await axios.post(`${API}/api/auth/login`,{email,password});
             login(data.user,data.token);
             navigate("/");
         }catch(err){
