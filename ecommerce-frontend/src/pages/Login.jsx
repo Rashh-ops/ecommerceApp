@@ -2,6 +2,7 @@ import {useState,useContext} from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 const Login=()=>{
     const {login}=useContext(AuthContext);
@@ -12,7 +13,7 @@ const Login=()=>{
     const handleLogin=async (e)=>{
         e.preventDefault();
         try{
-            const {data}=await axios.post("http://localhost:5000/api/auth/login",{email,password});
+            const {data}=await axios.post(import.meta.env.VITE_API_URL +"/api/auth/login",{email,password});
             login(data.user,data.token);
             navigate("/");
         }catch(err){

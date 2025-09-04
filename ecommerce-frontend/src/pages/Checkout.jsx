@@ -8,7 +8,7 @@ const Checkout = () => {
 
   useEffect(() => {
     const fetchCart = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/cart", {
+      const { data } = await axios.get(import.meta.env.VITE_API_URL +"/api/cart", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setCart(data);
@@ -24,7 +24,7 @@ const Checkout = () => {
       );
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/orders/place",
+        import.meta.env.VITE_API_URL +"/api/orders/place",
         {
           products: cart.products.map((p) => ({
             product: p.product._id,

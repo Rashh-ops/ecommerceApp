@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useEffect,useState} from "react";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 const ProductDetails=()=>{
     const {id}=useParams();
@@ -9,7 +10,7 @@ const ProductDetails=()=>{
 
     useEffect(()=>{
         const fetchProduct= async ()=>{
-            const {data}=await axios.get(`http://localhost:5000/api/products/${id}`);
+            const {data}=await axios.get(import.meta.env.VITE_API_URL +`/api/products/${id}`);
             setProduct(data);
         };
         fetchProduct();
@@ -23,7 +24,7 @@ const ProductDetails=()=>{
             console.log("Sending to backend:", { productId: product._id, quantity });
 
             console.log("Token in React:",localStorage.getItem("token"));
-            await axios.post("http://localhost:5000/api/cart/add",{productId:product._id,quantity},{headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
+            await axios.post(import.meta.env.VITE_API_URL +"/api/cart/add",{productId:product._id,quantity},{headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
             
             alert("Added to cart");
         }catch (err) {

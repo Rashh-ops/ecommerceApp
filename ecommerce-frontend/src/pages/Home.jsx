@@ -5,6 +5,7 @@ import {useState,useEffect} from "react";
 import brand11 from "../images/brand11.png";
 import brand2 from "../images/brand2.png";
 import brand3 from "../images/brand3.jpg";
+const API = import.meta.env.VITE_API_URL;
 
 const testimonials=[
     {name:"Alan", feedback:"Idiyappam pollathe products"},{name:"Alvin",feedback:"Logical products"},{name:"karan",feedback:"checkout process was super smooth"}
@@ -15,7 +16,7 @@ export default function Home(){
 
     useEffect(()=>{
         axios   
-            .get("http://localhost:5000/api/products?limit=4")
+            .get(import.meta.env.VITE_API_URL +"/api/products?limit=4")
             .then((res)=> setProducts(res.data))
             .catch((err)=> console.error(err));
     },[]);

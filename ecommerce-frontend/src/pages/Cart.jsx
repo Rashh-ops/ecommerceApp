@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import Checkout from "./Checkout";
 import { Link } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 const Cart=()=>{
     const {user}=useContext(AuthContext);
@@ -11,7 +12,7 @@ const Cart=()=>{
     useEffect(()=>{
         const fetchcart=async ()=>{
             try{
-                const {data}=await axios.get("http://localhost:5000/api/cart", {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
+                const {data}=await axios.get(import.meta.env.VITE_API_URL +"/api/cart", {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
                 setCart(data);
             }catch(err){
                 console.error(err);
@@ -37,7 +38,7 @@ const Cart=()=>{
   // then call backend
   try {
     await axios.put(
-      "http://localhost:5000/api/cart/update",
+      import.meta.env.VITE_API_URL +"/api/cart/update",
       { productId, quantity },
       { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );

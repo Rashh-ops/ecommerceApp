@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/orders/my-orders", {
+      const { data } = await axios.get(import.meta.env.VITE_API_URL +"/api/orders/my-orders", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setOrders(data);
